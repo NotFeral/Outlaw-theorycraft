@@ -1,0 +1,32 @@
+"Resource pooling"
+actions.build+=/pool_resource,for_next=1,if=combo_points.deficit>=2   # Pool when at least 2 combo points are needed for finishers
+
+"CP effeciency"
+actions.finish+=/dispatch,if=combo_points>=cp_max_spend-1  # Always try to spend combo points as soon as possible
+
+"KiR effeciency"
+actions.cds+=/roll_the_bones,if=rtb_buffs>=4&buff.loaded_dice.up
+actions.cds+=/roll_the_bones,if=rtb_buffs>=3&buff.loaded_dice.up&buff.broadside.up&buff.ruthless_precision.up
+
+"AR usage?"
+actions.cds+=/adrenaline_rush,if=!buff.adrenaline_rush.up   # Use Adrenaline Rush as soon as the buff is off cooldown
+actions.cds+=/adrenaline_rush,if=talent.improved_adrenaline_rush&combo_points<=2&!buff.loaded_dice.up  # Ensure you don't waste Adrenaline Rush if you have low combo points or if Loaded Dice is not up
+
+"Potentiel AR med HO"
+actions.build+=/ambush,if=talent.hidden_opportunity&buff.audacity.up  # Use Ambush when Hidden Opportunity is active and you have Audacity
+actions.build+=/ambush,if=talent.hidden_opportunity&combo_points.deficit>=2   # Ensure you're not overcapping combo points
+
+"BtE optimization"
+actions.finish+=/between_the_eyes,if=(buff.between_the_eyes.remains<4|talent.improved_between_the_eyes)&!buff.greenskins_wickers.up   # Use it as soon as it has less than 4 seconds left or when you need to refresh it
+actions.finish+=/between_the_eyes,if=talent.crackshot&(buff.ruthless_precision.up|buff.between_the_eyes.remains<4)
+
+"Coup de grace -> double swing"
+actions.finish+=/coup_de_grace,if=cooldown.coup_de_grace.remains<1.5  # Use Coup de Grace efficiently within cooldown
+
+"KS & BF changes - not used at all in std apl"
+actions.cds+=/blade_flurry,if=spell_targets>=2&buff.blade_flurry.remains<gcd   # Always keep Blade Flurry active on 2+ targets
+actions.cds+=/killing_spree,if=variable.finish_condition&!stealthed.all  # Use Killing Spree as soon as it's available, if finish condition is met
+
+
+
+
