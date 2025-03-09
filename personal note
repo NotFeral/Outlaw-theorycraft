@@ -1,0 +1,11 @@
+#Upload til FuFu.
+
+- Coup de grace double use, 2x abuse?
+actions.finish+=/coup_de_grace,if=cooldown.coup_de_grace.remains<1.5  # Use Coup de Grace efficiently within cooldown
+
+#BtE-effeciency
+actions.finish+=/between_the_eyes,if=(buff.between_the_eyes.remains<4|talent.improved_between_the_eyes)&!buff.greenskins_wickers.up   # Use it as soon as it has less than 4 seconds left or when you need to refresh it
+
+
+#FIX MELD I APL!!!! FUNGERE IKKE I PRAKSIS!
+actions.stealth_cds+=/shadowmeld,if=talent.crackshot&variable.finish_condition|!talent.crackshot&(talent.count_the_odds&variable.finish_condition|talent.hidden_opportunity)
